@@ -67,8 +67,8 @@
     NSString *piPath = [[NSBundle mainBundle] pathForResource:@"piMillion" ofType:@"txt"];
     NSString *piString = [[NSString alloc] initWithContentsOfFile:piPath encoding:NSUTF8StringEncoding error:nil];
     NSRange range1 = NSMakeRange(0, 7);
-    NSUInteger minusOne = 1;
-    NSInteger prevNumList = _nextNumber - minusOne;
+    NSUInteger minusEight = 8;
+    NSInteger prevNumList = _nextNumber - minusEight;
     NSString *piShort = [piString substringFromIndex:prevNumList];
     NSString *piShortRange = [piShort substringWithRange:range1];
     
@@ -82,11 +82,7 @@
         NSLog(@"%@", piShortRange);
         NSLog(@"%@", reversedString);
     }
-    
-    //Next number in Pi
-    NSString *nextNumString = [NSString stringWithFormat:@"%c",[piString characterAtIndex:_nextNumber]];
-    
-    //Does the input match Pi txt?
+      //Does the input match Pi txt?
     if ([[sender currentTitle] characterAtIndex:0] == [piString characterAtIndex:_numberOfAttempts]) {
         _numberOfAttempts++;
         _nextNumber++;
@@ -101,7 +97,7 @@
         
         //If not switch to fabricated output list
         else {
-            _display.text = reversedString;
+            _display.text = piShortRange;
         }
     }
     else if ([[sender currentTitle] characterAtIndex:0] != [piString characterAtIndex:_numberOfAttempts] && _numberOfAttempts > [_personalBest.text intValue]) {

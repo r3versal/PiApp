@@ -44,22 +44,7 @@
     NSString *digit = [sender currentTitle];
     NSString *piPath = [[NSBundle mainBundle] pathForResource:@"piMillion" ofType:@"txt"];
     NSString *piString = [[NSString alloc] initWithContentsOfFile:piPath encoding:NSUTF8StringEncoding error:nil];
-    NSRange range1 = NSMakeRange(0, 7);
-    NSUInteger minusOne = 1;
-    NSInteger prevNumList = _nextNumber - minusOne;
-    NSString *piShort = [piString substringFromIndex:prevNumList];
-    NSString *piShortRange = [piShort substringWithRange:range1];
-    
-    //Reverses String to show character output
-    NSMutableString *reversedString = [NSMutableString string];
-    NSInteger charIndex = [piShortRange length];
-    while (charIndex > 0) {
-        charIndex--;
-        NSRange subStrRange = NSMakeRange(charIndex, 1);
-        [reversedString appendString:[piShortRange substringWithRange:subStrRange]];
-        NSLog(@"%@", piShortRange);
-        NSLog(@"%@", reversedString);
-    }
+   
    
     //Next number in Pi
     NSString *nextNumString = [NSString stringWithFormat:@"%c",[piString characterAtIndex:_nextNumber]];
@@ -78,7 +63,23 @@
         
         //If not switch to fabricated output list
         else {
-            _mainScreen.text = reversedString;
+            NSRange range1 = NSMakeRange(0, 7);
+            NSUInteger minusOne = 8;
+            NSInteger prevNumList = _nextNumber - minusOne;
+            NSString *piShort = [piString substringFromIndex:prevNumList];
+            NSString *piShortRange = [piShort substringWithRange:range1];
+            
+            //Reverses String to show character output
+            NSMutableString *reversedString = [NSMutableString string];
+            NSInteger charIndex = [piShortRange length];
+            while (charIndex > 0) {
+                charIndex--;
+                NSRange subStrRange = NSMakeRange(charIndex, 1);
+                [reversedString appendString:[piShortRange substringWithRange:subStrRange]];
+                NSLog(@"%@", piShortRange);
+                NSLog(@"%@", reversedString);
+            }
+            _mainScreen.text = piShortRange;
             }
         }
         //Alert Controller is called if input does not match
