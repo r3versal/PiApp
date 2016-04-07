@@ -12,7 +12,7 @@
 
 - (void)viewDidLoad {
     
-    //Load and display saved score
+   // Load and display saved score
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:@"savedstring"];
     NSString *loadString = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -62,6 +62,7 @@
 }
 - (IBAction)digitPressed:(id)sender {
     
+    
     //Strings & Ints for Pi characters
     NSString *digit = [sender currentTitle];
     NSString *piPath = [[NSBundle mainBundle] pathForResource:@"piMillion" ofType:@"txt"];
@@ -110,58 +111,27 @@
         
     }
 }
+
+/*- (IBAction)TESTBUTTON:(id)sender {
+    
+    NSString *someText = @"My high score is:";
+    NSString *share = _personalBest.text;
+    NSArray *itemsToShare = @[someText, share];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
     
     
-
-
-
-
-/*- (IBAction)digitPressed:(id)sender {
- 
+    activityVC.excludedActivityTypes = @[];
+    [self presentViewController:activityVC animated:YES completion:nil];
     
-    if ([[sender currentTitle] characterAtIndex:0] == [piString characterAtIndex:_numberOfAttempts]) {
-        _numberOfAttempts++;
-        _digitCount.text = [NSString stringWithFormat:@"%lu", (unsigned long)_numberOfAttempts];
-        
-            //Nested IF statement to Determine if characters fit label space
-            if (_numberOfAttempts < 7) {
-                _display.text = [_display.text stringByAppendingString:digit];
-            }
-        
-                //If not switch to fabricated output list
-                else {
-                _display.text = piShortRange;
-                }
-            }
-    
-    else if ([[sender currentTitle] characterAtIndex:0] != [piString characterAtIndex:_numberOfAttempts] && _numberOfAttempts > [_personalBest.text intValue]) {
-        [self ShowHighScore];
-        [self shareStuff];
-        [self tryAgain];
-
-    }
-    
-    else if ([[sender currentTitle] characterAtIndex:0] != [piString characterAtIndex:_numberOfAttempts]) {
-        
-        UIAlertController *shareController = [UIAlertController alertControllerWithTitle:@"Oops! Wrong Number!" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *tryAgainButton = [UIAlertAction actionWithTitle:@"Try Again?" style:UIAlertActionStyleCancel handler:nil];
-        [shareController addAction:tryAgainButton];
-        [self presentViewController:shareController animated:YES completion:nil];
-        
-        //Call function to reset UI elements and counters
-        [self tryAgain];
-        [self ShowHighScore];
-        [self tryAgain];
-        
-    }
-}*/
+};*/
 
 
 
 //Alert controller for sharing score to social media
 - (void) shareStuff {
  
-    NSString *someText = @"My high score is:";
+    NSString *someText = @"I memorized ";
+    NSString *someTextEnd = @"digits of Pi";
     NSString *share = _personalBest.text;
     NSArray *itemsToShare = @[someText, share];
     
@@ -180,17 +150,19 @@
            
                                           activityVC.excludedActivityTypes = @[];
                                           [self presentViewController:activityVC animated:YES completion:nil];
+                                      
     
                                     }];
-    
+  
     
     [shareController addAction:cancelButton];
     
-    [shareController addAction:shareButton];
+   [shareController addAction:shareButton];
     
     [self presentViewController:shareController animated:YES completion:nil];
-
     
+    
+
     
 }
 

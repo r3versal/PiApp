@@ -57,14 +57,14 @@
         _correctDigits.text = [NSString stringWithFormat:@"%lu", (unsigned long)_numberOfAttempts];
         
         //Nested IF statement to Determine if characters fit label space
-        if (_numberOfAttempts < 7) {
+        if (_numberOfAttempts < 6) {
             _mainScreen.text = [_mainScreen.text stringByAppendingString:digit];
         }
         
         //If not switch to fabricated output list
         else {
-            NSRange range1 = NSMakeRange(0, 7);
-            NSUInteger minusEight = 8;
+            NSRange range1 = NSMakeRange(0, 6);
+            NSUInteger minusEight = 7;
             NSInteger prevNumList = _nextNumber - minusEight;
             NSString *piShort = [piString substringFromIndex:prevNumList];
             NSString *piShortRange = [piShort substringWithRange:range1];
